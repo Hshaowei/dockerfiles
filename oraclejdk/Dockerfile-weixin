@@ -1,0 +1,8 @@
+FROM hub.docker.dev.yunnex.com/library/jdk:8u141
+
+LABEL maintainer="hushaowei@yunnex.com"
+
+RUN curl -s -o jce_policy-8.zip  http://192.168.1.11/resource/Packages/jce_policy-8.zip \
+	&& unzip jce_policy-8.zip \
+	&& cp -f UnlimitedJCEPolicyJDK8/* $JAVA_HOME/jre/lib/security/ \
+	&& rm -rf UnlimitedJCEPolicyJDK8 jce_policy-8.zip 

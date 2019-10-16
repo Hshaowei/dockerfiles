@@ -1,0 +1,11 @@
+FROM hub.docker.dev.yunnex.com/library/jdk:8u141
+
+#https://github.com/prometheus/jmx_exporter/
+ENV JMX_EXPORTER_VERSION 0.12.0
+
+RUN mkdir /app/jmx_exporter \
+    && curl -s -o /tmp/jmx_prometheus_javaagent-${JMX_EXPORTER_VERSION}.jar https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/${JMX_EXPORTER_VERSION}/jmx_prometheus_javaagent-${JMX_EXPORTER_VERSION}.jar
+
+COPY jmx_exporter_configs /app/jmx_exporter/conf
+
+#ENV JAVA_OPTS "-javaagent:/app/jmx_exporter/jmx_prometheus_javaagent-${JMX_EXPORTER_VERSION}.jar=7777:/app/jmx_exporter/config/tomcat.yml"
