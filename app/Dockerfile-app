@@ -1,0 +1,14 @@
+FROM hub.docker.dev.yunnex.com/library/tomcat:8u141-7-weixin
+
+LABEL maintainer="hushaowei@yunnex.com"
+
+ARG PKG_PATH=target/yunnex.war
+ARG PKG_NAME=yunnex
+ARG CONTEXT=$PKG_NAME
+
+COPY $PKG_PATH /app/tomcat/webapps/$CONTEXT.war
+
+#RUN mkdir ~/.yunnex \
+#    && mkdir /app/tomcat/webapps/$CONTEXT \
+#    && unzip -q /app/$PKG_NAME*.war -d /app/tomcat/webapps/$CONTEXT \
+#    && rm -f /app/$PKG_NAME*.war

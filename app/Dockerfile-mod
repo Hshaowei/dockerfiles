@@ -1,0 +1,15 @@
+FROM hub.docker.dev.yunnex.com/library/jdk:8u141-weixin
+
+LABEL maintainer="hushaowei@yunnex.com"
+
+ARG PKG_PATH=target/yunnex-bin.zip
+ARG PKG_NAME=yunnex
+
+ENV APPNAME $PAK_NAME
+
+COPY mod_run.sh /app/
+ADD $PKG_PATH /app/
+
+RUN ln -s /app/logs /app/${PKG_NAME}/logs
+
+CMD ["sh","/app/run.sh"]
